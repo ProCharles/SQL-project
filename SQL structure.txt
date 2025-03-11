@@ -77,3 +77,32 @@ VALUES
     ('SAV2002', '2025-01-13', 'DEPOSIT', 25.00),
     ('SAV2002', '2025-01-18', 'WITHDRAWAL', 10.00),
     ('SAV2002', '2025-01-23', 'DEPOSIT', 15.00);
+
+Stage 3: Creating Reports Using SQL
+Here are the SQL queries for the required reports:
+Customer Address Data by Customer ID
+sql
+SELECT first_name, last_name, street, house_number, zip_code, city, country
+FROM Customers
+WHERE customer_id = 1; 
+
+
+Total Balance for All Accounts by Customer ID
+sql
+SELECT c.customer_id, c.first_name, c.last_name, SUM(a.balance) AS total_balance
+FROM Customers c
+JOIN Accounts a ON c.customer_id = a.customer_id
+WHERE c.customer_id = 1
+GROUP BY c.customer_id, c.first_name, c.last_name; 
+
+
+
+
+Transactions for CHECKING Accounts by Customer ID
+sql
+SELECT a.account_number, t.transaction_date, t.transaction_type, t.amount
+FROM Accounts a
+JOIN Transactions t ON a.account_number = t.account_number
+WHERE a.customer_id = 1 AND a.account_type = 'CHECKING'
+ORDER BY t.transaction_date;
+These queries can be tested in MySQL Workbench by replacing the customer_id value.
