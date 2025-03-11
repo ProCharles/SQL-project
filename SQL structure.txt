@@ -34,3 +34,46 @@ CREATE TABLE Transactions (
     amount DECIMAL(15,2) NOT NULL,
     FOREIGN KEY (account_number) REFERENCES Accounts(account_number)
 );
+
+-- Insert initial data
+-- Customers
+INSERT INTO Customers (first_name, last_name, date_of_birth, street, house_number, zip_code, city, country)
+VALUES 
+    ('Sarah', 'Johnson', '1985-03-15', 'Maple Street', '12', '12345', 'Springfield', 'USA'),
+    ('Bob', 'Smith', '1990-07-22', 'Oak Avenue', '5', '67890', 'Riverside', 'USA');
+ 
+-- Accounts
+INSERT INTO Accounts (account_number, customer_id, account_type, balance)
+VALUES 
+    ('CHK1001', 1, 'CHECKING', 20.00),
+    ('SAV1002', 1, 'SAVINGS', 25.00),
+    ('CHK2001', 2, 'CHECKING', 15.00),
+    ('SAV2002', 2, 'SAVINGS', 30.00);
+ 
+-- Transactions for Sarah's CHECKING account (CHK1001)
+INSERT INTO Transactions (account_number, transaction_date, transaction_type, amount)
+VALUES 
+    ('CHK1001', '2025-01-10', 'DEPOSIT', 10.00),
+    ('CHK1001', '2025-01-15', 'WITHDRAWAL', 5.00),
+    ('CHK1001', '2025-01-20', 'DEPOSIT', 15.00);
+ 
+-- Transactions for Sarah's SAVINGS account (SAV1002)
+INSERT INTO Transactions (account_number, transaction_date, transaction_type, amount)
+VALUES 
+    ('SAV1002', '2025-01-11', 'DEPOSIT', 20.00),
+    ('SAV1002', '2025-01-16', 'WITHDRAWAL', 10.00),
+    ('SAV1002', '2025-01-21', 'DEPOSIT', 15.00);
+ 
+-- Transactions for Bob's CHECKING account (CHK2001)
+INSERT INTO Transactions (account_number, transaction_date, transaction_type, amount)
+VALUES 
+    ('CHK2001', '2025-01-12', 'DEPOSIT', 15.00),
+    ('CHK2001', '2025-01-17', 'WITHDRAWAL', 5.00),
+    ('CHK2001', '2025-01-22', 'DEPOSIT', 5.00);
+ 
+-- Transactions for Bob's SAVINGS account (SAV2002)
+INSERT INTO Transactions (account_number, transaction_date, transaction_type, amount)
+VALUES 
+    ('SAV2002', '2025-01-13', 'DEPOSIT', 25.00),
+    ('SAV2002', '2025-01-18', 'WITHDRAWAL', 10.00),
+    ('SAV2002', '2025-01-23', 'DEPOSIT', 15.00);
