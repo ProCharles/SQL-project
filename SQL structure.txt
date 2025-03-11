@@ -96,8 +96,6 @@ WHERE c.customer_id = 1
 GROUP BY c.customer_id, c.first_name, c.last_name; 
 
 
-
-
 Transactions for CHECKING Accounts by Customer ID
 sql
 SELECT a.account_number, t.transaction_date, t.transaction_type, t.amount
